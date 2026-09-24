@@ -1,0 +1,7 @@
+Aportes que puede proporcionar un proyecto SQL:
+Creacion del diagrama ENTIDAD-RELACION
+Diseño y organización de la base de datos: creación de tablas, relaciones y estructuras adecuadas para almacenar la información.
+Integridad de los datos: utilización de claves primarias, claves foráneas, restricciones y tipos de datos apropiados.
+Consultas SQL: desarrollo de consultas SELECT, INSERT, UPDATE y DELETE para gestionar la información.
+Optimización: utilización de índices y consultas eficientes para mejorar el rendimiento.
+validaciones y estructuras que eviten datos duplicados o inconsistentes.
