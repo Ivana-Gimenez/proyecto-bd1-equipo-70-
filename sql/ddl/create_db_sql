@@ -54,3 +54,68 @@ CREATE TABLE Prenda (
         ON DELETE RESTRICT
         ON UPDATE CASCADE
 );
+
+CREATE TABLE Cabecera_Venta (
+    id_venta INT PRIMARY KEY,
+    fecha DATETIME NOT NULL,
+    total DECIMAL(10,2) NOT NULL CHECK (total >= 0),
+    estado VARCHAR(20) NOT NULL CHECK (estado IN ('pendiente', 'confirmada', 'anulada')),
+    id_cliente INT NOT NULL,
+
+    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE Detalle_Venta (
+    id_det_venta INT PRIMARY KEY,
+    cantidad INT NOT NULL CHECK (cantidad > 0),
+    precio_unitario DECIMAL(10,2) NOT NULL CHECK (precio_unitario >= 0),
+    subtotal DECIMAL(10,2) NOT NULL CHECK (subtotal >= 0),
+    id_venta INT NOT NULL,
+    cod_prenda INT NOT NULL,
+    FOREIGN KEY (id_venta) REFERENCES Cabecera_Venta(id_venta)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY (cod_prenda) REFERENCES Prenda(cod_prenda)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE Venta_Metodo_Pago (
+    id_venta INT NOT NULL,
+    cod_metodo_pago INT NOT NULL,
+    importe DECIMAL(10,2) NOT NULL CHECK (importe > 0),
+    PRIMARY KEY (id_venta, cod_metodo_pago),
+    FOREIGN KEY (id_venta) REFERENCES Cabecera_Venta(id_venta)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY (cod_metodo_pago) REFERENCES Metodo_Pago(cod_metodo_pago)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE Cabecera_Compra (
+    id_compra INT PRIMARY KEY,
+    fecha DATETIME NOT NULL,
+    total DECIMAL(10,2) NOT NULL CHECK (total >= 0),
+    cuit VARCHAR(11) NOT NULL,
+    FOREIGN KEY (cuit) REFERENCES Proveedor(cuit)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE Detalle_Compra (
+    id_det_compra INT PRIMARY KEY,
+    cantidad INT NOT NULL CHECK (cantidad > 0),
+    precio_unitario DECIMAL(10,2) NOT NULL CHECK (precio_unitario >= 0),
+    subtotal DECIMAL(10,2) NOT NULL CHECK (subtotal >= 0),
+    id_compra INT NOT NULL,
+    cod_prenda INT NOT NULL,
+    FOREIGN KEY (id_compra) REFERENCES Cabecera_Compra(id_compra)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY (cod_prenda) REFERENCES Prenda(cod_prenda)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
