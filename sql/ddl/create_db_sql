@@ -1,0 +1,56 @@
+CREATE TABLE Proveedor (
+    cuit VARCHAR(11) PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    razon_social VARCHAR(100) NOT NULL,
+    telefono VARCHAR(20)
+);
+
+CREATE TABLE Cliente (
+    id_cliente INT PRIMARY KEY,
+    dni VARCHAR(20) NOT NULL UNIQUE,
+    nombre_apellido VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Talle (
+    cod_talle INT PRIMARY KEY,
+    desc_talle VARCHAR(20) NOT NULL UNIQUE
+);
+
+CREATE TABLE Color (
+    cod_color INT PRIMARY KEY,
+    descripcion VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE Categoria (
+    id_categoria INT PRIMARY KEY,
+    descripcion VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE Metodo_Pago (
+    cod_metodo_pago INT PRIMARY KEY,
+    descripcion VARCHAR(50) NOT NULL UNIQUE
+);
+
+
+CREATE TABLE Prenda (
+    cod_prenda INT PRIMARY KEY,
+    tipo_prenda VARCHAR(50) NOT NULL,
+    descripcion VARCHAR(150),
+    stock INT NOT NULL CHECK (stock >= 0),
+    precio_unitario DECIMAL(10,2) NOT NULL CHECK (precio_unitario >= 0),
+    cod_talle INT NOT NULL,
+    cod_color INT NOT NULL,
+    id_categoria INT NOT NULL,
+
+    FOREIGN KEY (cod_talle) REFERENCES Talle(cod_talle)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+
+    FOREIGN KEY (cod_color) REFERENCES Color(cod_color)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+
+    FOREIGN KEY (id_categoria) REFERENCES Categoria(id_categoria)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
