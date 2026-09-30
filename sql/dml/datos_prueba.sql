@@ -1,52 +1,85 @@
 
 -- 1. POBLADO DE LA TABLA PRODUCTOS (10 Registros)
 INSERT INTO PRODUCTOS (descripcion, categoria, talle, color, precio_unitario, stock) VALUES
-('Remera Manga Corta B·sica', 'Remeras', 'M', 'Negro', 12500.00, 50),
+('Remera Manga Corta B√°sica', 'Remeras', 'M', 'Negro', 12500.00, 50),
 ('Jeans Slim Fit', 'Pantalones', '42', 'Azul Oscuro', 35000.00, 30),
-('Camisa Formal AlgodÛn', 'Camisas', 'L', 'Blanco', 28000.00, 20),
+('Camisa Formal Algod√≥n', 'Camisas', 'L', 'Blanco', 28000.00, 20),
 ('Buzo Oversize con Capucha', 'Buzos', 'XL', 'Gris', 42000.00, 15),
 ('Campera de Abrigo', 'Camperas', 'L', 'Verde Militar', 75000.00, 10),
-('Chomba PiquÈ', 'Remeras', 'S', 'Azul Marino', 18500.00, 25),
-('PantalÛn Jogger Deportivo', 'Pantalones', 'M', 'Negro', 26000.00, 40),
+('Chomba Piqu√©', 'Remeras', 'S', 'Azul Marino', 18500.00, 25),
+('Pantal√≥n Jogger Deportivo', 'Pantalones', 'M', 'Negro', 26000.00, 40),
 ('Sweater Tejido Lana', 'Sweaters', 'M', 'Bordo', 33000.00, 18),
 ('Vestido Casual Verano', 'Vestidos', 'S', 'Rojo', 29000.00, 12),
-('Short de BaÒo estampado', 'Trajes de baÒo', 'L', 'Amarillo', 15000.00, 35);
+('Short de Ba√±o estampado', 'Trajes de ba√±o', 'L', 'Amarillo', 15000.00, 35);
 
 -- 2. POBLADO DE LA TABLA CLIENTES (10 Registros)
 INSERT INTO CLIENTES (nombre, apellido, dni, email, celular, provincia, localidad, barrio, codigo_postal) VALUES
-('Juan', 'PÈrez', '38123456', 'juan.perez@email.com', '1134567890', 'Buenos Aires', 'CABA', 'Palermo', '1425'),
-('MarÌa', 'GÛmez', '40234567', 'maria.gomez@email.com', '1145678901', 'Buenos Aires', 'La Plata', 'Centro', '1900'),
-('Carlos', 'LÛpez', '35345678', 'carlos.lopez@email.com', '3515678902', 'CÛrdoba', 'CÛrdoba Cap.', 'Nueva CÛrdoba', '5000'),
-('Ana', 'MartÌnez', '42456789', 'ana.martinez@email.com', '3416789012', 'Santa Fe', 'Rosario', 'Pichincha', '2000'),
-('Lucas', 'RodrÌguez', '39567890', 'lucas.rod@email.com', '2617890123', 'Mendoza', 'Mendoza', 'Godoy Cruz', '5501'),
-('SofÌa', 'Fern·ndez', '41678901', 'sofia.fer@email.com', '3794890123', 'Corrientes', 'Corrientes', 'Centro', '3400'),
-('Diego', 'S·nchez', '37789012', 'diego.s@email.com', '3815901234', 'Tucum·n', 'San Miguel', 'Yerba Buena', '4107'),
-('LucÌa', 'Romero', '43890123', 'lucia.romero@email.com', '2996012345', 'NeuquÈn', 'NeuquÈn', 'Alta Barda', '8300'),
-('Gabriel', 'Torres', '36901234', 'gabriel.t@email.com', '2237012345', 'Buenos Aires', 'Mar del Plata', 'G¸emes', '7600'),
-('Elena', 'BenÌtez', '44012345', 'elena.b@email.com', '3628012345', 'Chaco', 'Resistencia', 'Sarmiento', '3500');
+('Juan', 'P√©rez', '38123456', 'juan.perez@email.com', '1134567890', 'Buenos Aires', 'CABA', 'Palermo', '1425'),
+('Mar√≠a', 'G√≥mez', '40234567', 'maria.gomez@email.com', '1145678901', 'Buenos Aires', 'La Plata', 'Centro', '1900'),
+('Carlos', 'L√≥pez', '35345678', 'carlos.lopez@email.com', '3515678902', 'C√≥rdoba', 'C√≥rdoba Cap.', 'Nueva C√≥rdoba', '5000'),
+('Ana', 'Mart√≠nez', '42456789', 'ana.martinez@email.com', '3416789012', 'Santa Fe', 'Rosario', 'Pichincha', '2000'),
+('Lucas', 'Rodr√≠guez', '39567890', 'lucas.rod@email.com', '2617890123', 'Mendoza', 'Mendoza', 'Godoy Cruz', '5501'),
+('Sof√≠a', 'Fern√°ndez', '41678901', 'sofia.fer@email.com', '3794890123', 'Corrientes', 'Corrientes', 'Centro', '3400'),
+('Diego', 'S√°nchez', '37789012', 'diego.s@email.com', '3815901234', 'Tucum√°n', 'San Miguel', 'Yerba Buena', '4107'),
+('Luc√≠a', 'Romero', '43890123', 'lucia.romero@email.com', '2996012345', 'Neuqu√©n', 'Neuqu√©n', 'Alta Barda', '8300'),
+('Gabriel', 'Torres', '36901234', 'gabriel.t@email.com', '2237012345', 'Buenos Aires', 'Mar del Plata', 'G√ºemes', '7600'),
+('Elena', 'Ben√≠tez', '44012345', 'elena.b@email.com', '3628012345', 'Chaco', 'Resistencia', 'Sarmiento', '3500');
 
 -- 3. POBLADO DE LA TABLA PROVEEDORES (10 Registros)
 INSERT INTO PROVEEDORES (cuit, nombre, sitio_web, condiciones_de_pago, email, telefono, id_producto) VALUES
-('30-11223344-5', 'Textil Argentina S.A.', 'www.textilarg.com', '30 dÌas netos', 'contacto@textilarg.com', '1140001111', 1),
+('30-11223344-5', 'Textil Argentina S.A.', 'www.textilarg.com', '30 d√≠as netos', 'contacto@textilarg.com', '1140001111', 1),
 ('30-22334455-6', 'Indumentaria del Sur', 'www.indumentariasur.com', 'Contado', 'ventas@indumentariasur.com', '1140002222', 2),
 ('30-33445566-7', 'Confecciones Moda S.R.L.', 'www.confeccionesmoda.com', '50% anticipado, 50% entrega', 'info@confeccionesmoda.com', '3514003333', 3),
-('30-44556677-8', 'Distribuidora Textil Baires', 'www.textilbaires.com', '60 dÌas cheques', 'ventas@textilbaires.com', '1140004444', 4),
-('30-55667788-9', 'Abrigos & Co.', 'www.abrigosco.com', '30 dÌas netos', 'compras@abrigosco.com', '2614005555', 5),
-('30-66778899-0', 'Telas y DiseÒos S.A.', 'www.telasydisenos.com', 'Contado', 'contacto@telasydisenos.com', '3414006666', 6),
-('30-77889900-1', 'Sportwear Proveedores', 'www.sportwearprov.com', '15 dÌas netos', 'info@sportwearprov.com', '1140007777', 7),
-('30-88990011-2', 'Hilados del Norte', 'www.hiladosnorte.com', '30 dÌas netos', 'ventas@hiladosnorte.com', '3814008888', 8),
+('30-44556677-8', 'Distribuidora Textil Baires', 'www.textilbaires.com', '60 d√≠as cheques', 'ventas@textilbaires.com', '1140004444', 4),
+('30-55667788-9', 'Abrigos & Co.', 'www.abrigosco.com', '30 d√≠as netos', 'compras@abrigosco.com', '2614005555', 5),
+('30-66778899-0', 'Telas y Dise√±os S.A.', 'www.telasydisenos.com', 'Contado', 'contacto@telasydisenos.com', '3414006666', 6),
+('30-77889900-1', 'Sportwear Proveedores', 'www.sportwearprov.com', '15 d√≠as netos', 'info@sportwearprov.com', '1140007777', 7),
+('30-88990011-2', 'Hilados del Norte', 'www.hiladosnorte.com', '30 d√≠as netos', 'ventas@hiladosnorte.com', '3814008888', 8),
 ('30-99001122-3', 'Moda Verano S.R.L.', 'www.modaverano.com', 'Contado', 'contacto@modaverano.com', '3794009999', 9),
-('30-10111213-4', 'Malla & Playa Fabrica', 'www.mallayplaya.com', '30/60 dÌas', 'ventas@mallayplaya.com', '2234000000', 10);
+('30-10111213-4', 'Malla & Playa Fabrica', 'www.mallayplaya.com', '30/60 d√≠as', 'ventas@mallayplaya.com', '2234000000', 10);
 
 -- 4. POBLADO DE LA TABLA COMPRA (10 Registros)
 INSERT INTO COMPRA (metodo_pago, precio_total, estado_de_compra, fecha, id_cliente, id_producto) VALUES
 ('Efectivo',           12500.00, 'Confirmada', '2026-03-01 10:30:00', 1, 1),
-('Tarjeta de DÈbito',  35000.00, 'Confirmada', '2026-03-02 11:15:00', 2, 2),
-('Tarjeta de CrÈdito', 28000.00, 'Confirmada', '2026-03-03 16:45:00', 3, 3),
+('Tarjeta de D√©bito',  35000.00, 'Confirmada', '2026-03-02 11:15:00', 2, 2),
+('Tarjeta de Cr√©dito', 28000.00, 'Confirmada', '2026-03-03 16:45:00', 3, 3),
 ('Transferencia',      42000.00, 'Pendiente',  '2026-03-04 18:20:00', 4, 4),
 ('Billetera Virtual',  75000.00, 'Confirmada', '2026-03-05 09:00:00', 5, 5),
 ('Efectivo',           18500.00, 'Anulada',    '2026-03-06 14:10:00', 6, 6),
-('Tarjeta de DÈbito',  26000.00, 'Confirmada', '2026-03-07 12:00:00', 7, 7),
-('Tarjeta de CrÈdito', 33000.00, 'Confirmada', '2026-03-08 17:30:00', 8, 8),
+('Tarjeta de D√©bito',  26000.00, 'Confirmada', '2026-03-07 12:00:00', 7, 7),
+('Tarjeta de Cr√©dito', 33000.00, 'Confirmada', '2026-03-08 17:30:00', 8, 8),
 ('Transferencia',      29000.00, 'Pendiente',  '2026-03-09 19:40:00', 9, 9),
 ('Billetera Virtual',  15000.00, 'Confirmada', '2026-03-10 11:05:00', 10, 10);
+
+-- 5. TABLA COLOR
+INSERT INTO COLOR (cod_color, descripcion) VALUES
+(1, 'Negro'),
+(2, 'Blanco'),
+(3, 'Azul Oscuro'),
+(4, 'Rojo'),
+(5, 'Gris'),
+(6, 'Verde Militar'),
+(7, 'Bordo'),
+(8, 'Amarillo');
+
+-- 6. TABLA METODO DE PAGO
+INSERT INTO Metodo_Pago (cod_metodo_pago, descripcion) VALUES
+(1, 'Efectivo'),
+(2, 'Tarjeta de D√©bito'),
+(3, 'Tarjeta de Cr√©dito'),
+(4, 'Transferencia bancaria'),
+(5, 'Mercado Pago'),
+(6, 'MODO'),
+(7, 'QR'),
+(8, 'Tarjeta Naranja');
+
+--7. TABLA CATEGORIA
+INSERT INTO Categoria (id_categoria, descripcion) VALUES
+(128, 'Remeras'),
+(231, 'Pantalones'),
+(322, 'Buzos'),
+(456, 'Camisas'),
+(512, 'Camperas'),
+(688, 'Vestidos'),
+(799, 'Trajes de Ba√±o'),
+(809, 'Swetears');
