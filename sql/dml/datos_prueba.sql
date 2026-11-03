@@ -1,85 +1,137 @@
+INSERT INTO Proveedor (cuit, nombre, razon_social, telefono) VALUES
+('20304445551', 'Textil Argentina S.A.', 'Textil Argentina Sociedad Anónima', '01145551234'),
+('27251112224', 'Confecciones del Sur', 'Confecciones del Sur S.R.L.', '01147895522'),
+('30712233445', 'Indumentaria Moderna', 'Indumentaria Moderna S.A.', '03514223388'),
+('20289998882', 'Hilados del Norte', 'Hilados y Telas S.R.L.', '03814332211'),
+('30685554443', 'Telas y Avios SRL', 'Telas y Avios Sociedad de Responsabilidad Limitada', '02234998877'),
+('27310001119', 'Moda Mayorista', 'Moda Mayorista S.A.', '01143332211'),
+('20241113335', 'Distribuidora Textil Cordoba', 'Distribuidora Cordoba S.R.L.', '03514889966'),
+('30718889994', 'Fabrica de Jeans Patagonia', 'Patagonia Denim S.A.', '02944421133'),
+('20192223336', 'Tejeduría Central', 'Tejeduría Central S.R.L.', '01141112233'),
+('30599988871', 'Insumos Textiles Rosario', 'Insumos Rosario S.A.', '03414556677');
 
--- 1. POBLADO DE LA TABLA PRODUCTOS (10 Registros)
-INSERT INTO PRODUCTOS (descripcion, categoria, talle, color, precio_unitario, stock) VALUES
-('Remera Manga Corta Básica', 'Remeras', 'M', 'Negro', 12500.00, 50),
-('Jeans Slim Fit', 'Pantalones', '42', 'Azul Oscuro', 35000.00, 30),
-('Camisa Formal Algodón', 'Camisas', 'L', 'Blanco', 28000.00, 20),
-('Buzo Oversize con Capucha', 'Buzos', 'XL', 'Gris', 42000.00, 15),
-('Campera de Abrigo', 'Camperas', 'L', 'Verde Militar', 75000.00, 10),
-('Chomba Piqué', 'Remeras', 'S', 'Azul Marino', 18500.00, 25),
-('Pantalón Jogger Deportivo', 'Pantalones', 'M', 'Negro', 26000.00, 40),
-('Sweater Tejido Lana', 'Sweaters', 'M', 'Bordo', 33000.00, 18),
-('Vestido Casual Verano', 'Vestidos', 'S', 'Rojo', 29000.00, 12),
-('Short de Baño estampado', 'Trajes de baño', 'L', 'Amarillo', 15000.00, 35);
+INSERT INTO Cliente (id_cliente, dni, nombre_apellido) VALUES
+(1, '35123456', 'Juan Pérez'),
+(2, '28987654', 'María Gómez'),
+(3, '40111222', 'Carlos López'),
+(4, '32444555', 'Ana Martínez'),
+(5, '25789123', 'Luis Rodríguez'),
+(6, '38999000', 'Sofía Fernández'),
+(7, '30555444', 'Diego González'),
+(8, '42333222', 'Lucía Díaz'),
+(9, '27666777', 'Esteban Romero'),
+(10, '36222111', 'Valeria Sánchez');
 
--- 2. POBLADO DE LA TABLA CLIENTES (10 Registros)
-INSERT INTO CLIENTES (nombre, apellido, dni, email, celular, provincia, localidad, barrio, codigo_postal) VALUES
-('Juan', 'Pérez', '38123456', 'juan.perez@email.com', '1134567890', 'Buenos Aires', 'CABA', 'Palermo', '1425'),
-('María', 'Gómez', '40234567', 'maria.gomez@email.com', '1145678901', 'Buenos Aires', 'La Plata', 'Centro', '1900'),
-('Carlos', 'López', '35345678', 'carlos.lopez@email.com', '3515678902', 'Córdoba', 'Córdoba Cap.', 'Nueva Córdoba', '5000'),
-('Ana', 'Martínez', '42456789', 'ana.martinez@email.com', '3416789012', 'Santa Fe', 'Rosario', 'Pichincha', '2000'),
-('Lucas', 'Rodríguez', '39567890', 'lucas.rod@email.com', '2617890123', 'Mendoza', 'Mendoza', 'Godoy Cruz', '5501'),
-('Sofía', 'Fernández', '41678901', 'sofia.fer@email.com', '3794890123', 'Corrientes', 'Corrientes', 'Centro', '3400'),
-('Diego', 'Sánchez', '37789012', 'diego.s@email.com', '3815901234', 'Tucumán', 'San Miguel', 'Yerba Buena', '4107'),
-('Lucía', 'Romero', '43890123', 'lucia.romero@email.com', '2996012345', 'Neuquén', 'Neuquén', 'Alta Barda', '8300'),
-('Gabriel', 'Torres', '36901234', 'gabriel.t@email.com', '2237012345', 'Buenos Aires', 'Mar del Plata', 'Güemes', '7600'),
-('Elena', 'Benítez', '44012345', 'elena.b@email.com', '3628012345', 'Chaco', 'Resistencia', 'Sarmiento', '3500');
+INSERT INTO Talle (cod_talle, desc_talle) VALUES
+(1, 'XS'),
+(2, 'S'),
+(3, 'M'),
+(4, 'L'),
+(5, 'XL'),
+(6, 'XXL'),
+(7, '38'),
+(8, '40');
 
--- 3. POBLADO DE LA TABLA PROVEEDORES (10 Registros)
-INSERT INTO PROVEEDORES (cuit, nombre, sitio_web, condiciones_de_pago, email, telefono, id_producto) VALUES
-('30-11223344-5', 'Textil Argentina S.A.', 'www.textilarg.com', '30 días netos', 'contacto@textilarg.com', '1140001111', 1),
-('30-22334455-6', 'Indumentaria del Sur', 'www.indumentariasur.com', 'Contado', 'ventas@indumentariasur.com', '1140002222', 2),
-('30-33445566-7', 'Confecciones Moda S.R.L.', 'www.confeccionesmoda.com', '50% anticipado, 50% entrega', 'info@confeccionesmoda.com', '3514003333', 3),
-('30-44556677-8', 'Distribuidora Textil Baires', 'www.textilbaires.com', '60 días cheques', 'ventas@textilbaires.com', '1140004444', 4),
-('30-55667788-9', 'Abrigos & Co.', 'www.abrigosco.com', '30 días netos', 'compras@abrigosco.com', '2614005555', 5),
-('30-66778899-0', 'Telas y Diseños S.A.', 'www.telasydisenos.com', 'Contado', 'contacto@telasydisenos.com', '3414006666', 6),
-('30-77889900-1', 'Sportwear Proveedores', 'www.sportwearprov.com', '15 días netos', 'info@sportwearprov.com', '1140007777', 7),
-('30-88990011-2', 'Hilados del Norte', 'www.hiladosnorte.com', '30 días netos', 'ventas@hiladosnorte.com', '3814008888', 8),
-('30-99001122-3', 'Moda Verano S.R.L.', 'www.modaverano.com', 'Contado', 'contacto@modaverano.com', '3794009999', 9),
-('30-10111213-4', 'Malla & Playa Fabrica', 'www.mallayplaya.com', '30/60 días', 'ventas@mallayplaya.com', '2234000000', 10);
-
--- 4. POBLADO DE LA TABLA COMPRA (10 Registros)
-INSERT INTO COMPRA (metodo_pago, precio_total, estado_de_compra, fecha, id_cliente, id_producto) VALUES
-('Efectivo',           12500.00, 'Confirmada', '2026-03-01 10:30:00', 1, 1),
-('Tarjeta de Débito',  35000.00, 'Confirmada', '2026-03-02 11:15:00', 2, 2),
-('Tarjeta de Crédito', 28000.00, 'Confirmada', '2026-03-03 16:45:00', 3, 3),
-('Transferencia',      42000.00, 'Pendiente',  '2026-03-04 18:20:00', 4, 4),
-('Billetera Virtual',  75000.00, 'Confirmada', '2026-03-05 09:00:00', 5, 5),
-('Efectivo',           18500.00, 'Anulada',    '2026-03-06 14:10:00', 6, 6),
-('Tarjeta de Débito',  26000.00, 'Confirmada', '2026-03-07 12:00:00', 7, 7),
-('Tarjeta de Crédito', 33000.00, 'Confirmada', '2026-03-08 17:30:00', 8, 8),
-('Transferencia',      29000.00, 'Pendiente',  '2026-03-09 19:40:00', 9, 9),
-('Billetera Virtual',  15000.00, 'Confirmada', '2026-03-10 11:05:00', 10, 10);
-
--- 5. TABLA COLOR
-INSERT INTO COLOR (cod_color, descripcion) VALUES
+INSERT INTO Color (cod_color, descripcion) VALUES
 (1, 'Negro'),
 (2, 'Blanco'),
-(3, 'Azul Oscuro'),
-(4, 'Rojo'),
-(5, 'Gris'),
+(3, 'Azul Marino'),
+(4, 'Gris Melange'),
+(5, 'Rojo'),
 (6, 'Verde Militar'),
-(7, 'Bordo'),
-(8, 'Amarillo');
+(7, 'Beige'),
+(8, 'Marrón');
 
--- 6. TABLA METODO DE PAGO
+INSERT INTO Categoria (id_categoria, descripcion) VALUES
+(1, 'Remeras y Musculosas'),
+(2, 'Pantalones y Jeans'),
+(3, 'Camperas y Abrigos'),
+(4, 'Buzos y Hoodies'),
+(5, 'Camisas'),
+(6, 'Shorts y Bermudas'),
+(7, 'Vestidos'),
+(8, 'Sweaters y Pullovers');
+
 INSERT INTO Metodo_Pago (cod_metodo_pago, descripcion) VALUES
 (1, 'Efectivo'),
-(2, 'Tarjeta de Débito'),
-(3, 'Tarjeta de Crédito'),
-(4, 'Transferencia bancaria'),
-(5, 'Mercado Pago'),
-(6, 'MODO'),
-(7, 'QR'),
-(8, 'Tarjeta Naranja');
+(2, 'Tarjeta de Crédito'),
+(3, 'Tarjeta de Débito'),
+(4, 'Mercado Pago'),
+(5, 'Transferencia Bancaria'),
+(6, 'Cuenta DNI'),
+(7, 'BNA+'),
+(8, 'Ualá'),
+(9, 'Modo'),
+(10, 'Criptomoneda');
 
---7. TABLA CATEGORIA
-INSERT INTO Categoria (id_categoria, descripcion) VALUES
-(128, 'Remeras'),
-(231, 'Pantalones'),
-(322, 'Buzos'),
-(456, 'Camisas'),
-(512, 'Camperas'),
-(688, 'Vestidos'),
-(799, 'Trajes de Baño'),
-(809, 'Swetears');
+INSERT INTO Prenda (cod_prenda, tipo_prenda, descripcion, stock, precio_unitario, cod_talle, cod_color, id_categoria) VALUES
+(101, 'Remera Básica', 'Remera de algodón manga corta', 50, 15000.00, 3, 1, 1),
+(102, 'Jeans Chupín', 'Pantalón jean elástizado tiro medio', 30, 45000.00, 7, 3, 2),
+(103, 'Campera de Cuero', 'Campera ecológica forrada', 15, 85000.00, 4, 1, 3),
+(104, 'Buzo Oversize', 'Buzo con capucha rústico', 25, 40000.00, 4, 4, 4),
+(105, 'Camisa Formal', 'Camisa entallada de vestir', 20, 28000.00, 3, 2, 5),
+(106, 'Short Denim', 'Short de jean tiro alto', 40, 22000.00, 2, 3, 6),
+(107, 'Vestido Casual', 'Vestido corto estampado', 18, 35000.00, 2, 5, 7),
+(108, 'Sweater Lanilla', 'Sweater tejido liviano', 22, 31000.00, 3, 7, 8),
+(109, 'Remera Deportiva', 'Remera técnica secado rápido', 60, 18000.00, 5, 2, 1),
+(110, 'Pantalón Cargo', 'Pantalón gabardina multibolsillos', 25, 52000.00, 4, 6, 2);
+
+INSERT INTO Cabecera_Venta (id_venta, fecha, total, estado, id_cliente) VALUES
+(1, '2026-05-01 10:30:00', 60000.00, 'confirmada', 1),
+(2, '2026-05-01 11:15:00', 85000.00, 'confirmada', 2),
+(3, '2026-05-02 14:20:00', 40000.00, 'pendiente', 3),
+(4, '2026-05-02 16:00:00', 35000.00, 'confirmada', 4),
+(5, '2026-05-03 09:45:00', 67000.00, 'confirmada', 5),
+(6, '2026-05-03 12:10:00', 22000.00, 'anulada', 6),
+(7, '2026-05-04 15:30:00', 103000.00, 'confirmada', 7),
+(8, '2026-05-04 17:00:00', 31000.00, 'pendiente', 8),
+(9, '2026-05-05 10:00:00', 33000.00, 'confirmada', 9),
+(10, '2026-05-05 18:45:00', 52000.00, 'confirmada', 10);
+
+INSERT INTO Cabecera_Compra (id_compra, fecha, total, cuit) VALUES
+(1, '2026-04-10 08:00:00', 450000.00, '20304445551'),
+(2, '2026-04-12 09:30:00', 320000.00, '27251112224'),
+(3, '2026-04-15 10:15:00', 600000.00, '30712233445'),
+(4, '2026-04-18 11:00:00', 210000.00, '20289998882'),
+(5, '2026-04-20 14:00:00', 380000.00, '30685554443'),
+(6, '2026-04-22 15:30:00', 150000.00, '27310001119'),
+(7, '2026-04-25 09:00:00', 500000.00, '20241113335'),
+(8, '2026-04-27 12:45:00', 420000.00, '30718889994'),
+(9, '2026-04-29 16:20:00', 270000.00, '20192223336'),
+(10, '2026-05-01 10:00:00', 340000.00, '30599988871');
+
+INSERT INTO Detalle_Venta (id_det_venta, cantidad, precio_unitario, subtotal, id_venta, cod_prenda) VALUES
+(1, 1, 15000.00, 15000.00, 1, 101),
+(2, 1, 45000.00, 45000.00, 1, 102),
+(3, 1, 85000.00, 85000.00, 2, 103),
+(4, 1, 40000.00, 40000.00, 3, 104),
+(5, 1, 35000.00, 35000.00, 4, 107),
+(6, 1, 45000.00, 45000.00, 5, 102),
+(7, 1, 22000.00, 22000.00, 5, 106),
+(8, 1, 22000.00, 22000.00, 6, 106),
+(9, 2, 18000.00, 36000.00, 7, 109),
+(10, 1, 67000.00, 67000.00, 7, 103);
+
+INSERT INTO Venta_Metodo_Pago (id_venta, cod_metodo_pago, importe) VALUES
+(1, 2, 60000.00),
+(2, 4, 85000.00),
+(3, 1, 40000.00),
+(4, 3, 35000.00),
+(5, 4, 67000.00),
+(6, 1, 22000.00),
+(7, 2, 103000.00),
+(8, 5, 31000.00),
+(9, 6, 33000.00),
+(10, 4, 52000.00);
+
+INSERT INTO Detalle_Compra (id_det_compra, cantidad, precio_unitario, subtotal, id_compra, cod_prenda) VALUES
+(1, 20, 10000.00, 200000.00, 1, 101),
+(2, 10, 25000.00, 250000.00, 1, 102),
+(3, 5, 50000.00, 250000.00, 2, 103),
+(4, 3, 23333.33, 70000.00, 2, 105),
+(5, 15, 24000.00, 360000.00, 3, 104),
+(6, 10, 14000.00, 140000.00, 3, 109),
+(7, 10, 21000.00, 210000.00, 4, 108),
+(8, 12, 18000.00, 216000.00, 5, 106),
+(9, 8, 20450.00, 163600.00, 5, 110),
+(10, 10, 15000.00, 150000.00, 6, 101);
