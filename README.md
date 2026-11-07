@@ -52,6 +52,7 @@ Investigación e implementación de mecanismos para fortalecer la base de datos:
 
 Estructura del repositorio
 
+```text
 
 proyecto-bd1-equipo-70/
 │
@@ -70,6 +71,7 @@ proyecto-bd1-equipo-70/
 │
 └── README.md
 
+```text
 
 Integrantes:
 
