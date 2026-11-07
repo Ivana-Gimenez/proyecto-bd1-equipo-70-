@@ -71,7 +71,7 @@ proyecto-bd1-equipo-70/
 │
 └── README.md
 
-```text
+
 
 Integrantes:
 
