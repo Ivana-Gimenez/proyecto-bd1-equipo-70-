@@ -104,8 +104,8 @@ EXEC dbo.sp_ConsultarPrendasVendidasPorTemporada
 
 Permite consultar las unidades vendidas agrupadas por tipo de prenda para el período seleccionado.
 
-**Nota:** los valores utilizados en las pruebas, como el identificador de venta y el CUIT, deben corresponder a registros existentes en la base de datos.
 
 ## Resultados obtenidos
 
-Los desarrollos permiten reutilizar consultas y cálculos frecuentes, obtener información según distintos períodos y facilitar el análisis de las operaciones comerciales de SUPER-EXPRESS.
+Los desarrollos permiten reutilizar consultas y cálculos frecuentes, obtener información según distintos períodos y facilitar el
+análisis de las operaciones comerciales.
