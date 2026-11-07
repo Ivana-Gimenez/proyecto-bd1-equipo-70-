@@ -75,7 +75,7 @@ La función recibe el identificador de una venta y devuelve el importe total cal
 
 ### 2. Ejecución del procedimiento de compras por color
 
-```
+
 EXEC dbo.sp_ConsultarComprasPorColor
     @fecha_desde = '2026-05-01',
     @fecha_hasta = '2026-05-31';
@@ -85,7 +85,6 @@ Permite consultar las cantidades de prendas compradas por color durante el perí
 
 ### 3. Ejecución del procedimiento de compras por proveedor
 
-```
 EXEC dbo.sp_ConsultarComprasProveedorPorPeriodo
     @cuit = '20301234567',
     @fecha_desde = '2026-05-01',
@@ -96,7 +95,7 @@ Permite obtener el importe total de las compras realizadas a un proveedor durant
 
 ### 4. Ejecución del procedimiento de prendas vendidas por temporada
 
-```
+
 EXEC dbo.sp_ConsultarPrendasVendidasPorTemporada
     @fecha_desde = '2026-05-01',
     @fecha_hasta = '2026-05-31';
