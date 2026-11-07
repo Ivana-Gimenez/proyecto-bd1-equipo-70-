@@ -1,5 +1,111 @@
-El objetivo principal de esta tarea consistía en desarrollar un script para registrar la venta de un producto asegurando la total integridad de la información. El proceso requería afectar múltiples tablas de manera coordinada, incluyendo la inserción de datos en Cabecera_Venta y Detalle_Venta, junto con la actualización del inventario en la tabla Prenda. Durante las pruebas iniciales, el sistema enfrentó un escenario crítico: al intentar registrar una transacción especificando un código de producto inexistente, como cod_prenda = 9999, la base de datos arrojaba una violación de restricción de clave foránea. Esto interrumpía el flujo normal del script y dejaba la información en un estado parcialmente guardado e inconsistente, donde la cabecera de la venta se registraba pero el detalle y el inventario fallaban.
+# Procedimientos y Funciones Almacenadas
 
-Para resolver esta vulnerabilidad y garantizar el cumplimiento estricto de las propiedades ACID, especialmente en términos de atomicidad y consistencia, se estructuró un mecanismo de control mediante un bloque TRY...CATCH y transacciones explícitas. Dentro de esta lógica, todas las operaciones DML se agruparon como una única unidad de trabajo. Ante cualquier falla durante la ejecución de las sentencias INSERT o UPDATE, el flujo se redirige de inmediato a la sección CATCH. Allí se implementó la sentencia IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION, la cual se encarga de deshacer automáticamente cualquier cambio previo —como la inserción inicial en la cabecera— y retornar la base de datos a su estado exacto antes de iniciar la operación, finalizando con la exposición del fallo mediante ERROR_MESSAGE().
+## Definición y objetivo
 
-Gracias a este diseño, si cualquier inserción o actualización falla, ninguna operación llega a impactar de forma definitiva en el sistema. Esta experiencia me permitió fortalecer de manera práctica la competencia de Manejo de Transacciones y Control de Concurrencia e Integridad. A través de este desarrollo, comprendí la importancia crucial de agrupar operaciones relacionales interdependientes para evitar la corrupción o inconsistencia de los datos frente a errores en tiempo de ejecución.
+Los procedimientos almacenados y las funciones son objetos de la base de datos que permiten guardar instrucciones SQL para reutilizarlas cuando sea necesario.
+
+Los procedimientos almacenados permiten ejecutar consultas y operaciones mediante parámetros de entrada. Las funciones permiten realizar cálculos o procesar información y devolver un resultado.
+
+Su objetivo es organizar el código SQL, evitar la repetición de instrucciones y facilitar el acceso a la información de la base de datos.
+
+## Ventajas y aplicaciones
+
+Entre sus principales ventajas se encuentran:
+
+- **Reutilización:** permiten ejecutar instrucciones SQL sin tener que escribirlas nuevamente.
+- **Organización:** mantienen las operaciones y consultas agrupadas dentro de la base de datos.
+- **Mantenimiento:** facilitan la modificación y administración del código.
+- **Uso de parámetros:** permiten adaptar las consultas según los valores recibidos.
+- **Centralización:** permiten disponer de operaciones frecuentes en un único lugar.
+
+En un sistema comercial como SUPER-EXPRESS, pueden utilizarse para calcular importes de ventas, consultar compras por color, obtener información de proveedores y analizar las prendas más vendidas.
+
+## Implementación en SQL Server
+
+En SQL Server se utilizan las siguientes instrucciones:
+
+- `CREATE FUNCTION`: permite crear una función.
+- `CREATE PROCEDURE`: permite crear un procedimiento almacenado.
+- `RETURNS`: establece el tipo de dato que devuelve una función.
+- `RETURN`: permite devolver el resultado de una función.
+- `EXEC`: permite ejecutar un procedimiento almacenado.
+- `SELECT`: permite invocar una función que devuelve un valor escalar.
+
+Los procedimientos pueden recibir parámetros para adaptar las consultas a diferentes necesidades, como fechas, identificadores o datos de proveedores.
+
+## Aplicación en SUPER-EXPRESS
+
+En SUPER-EXPRESS se desarrollaron una función y tres procedimientos almacenados para facilitar el cálculo de importes y la consulta de información comercial.
+
+### 1. Función: fn_CalcularTotalVenta
+
+Permite calcular el importe total de una venta a partir de las cantidades y los precios unitarios registrados en `Detalle_Venta`.
+
+Recibe como parámetro el identificador de la venta y devuelve el importe calculado.
+
+### 2. Procedimiento: sp_ConsultarComprasPorColor
+
+Permite consultar la cantidad de prendas compradas agrupadas por color dentro de un período determinado.
+
+Recibe las fechas de inicio y finalización, y muestra únicamente los colores cuyo total de prendas compradas supera las diez unidades.
+
+### 3. Procedimiento: sp_ConsultarComprasProveedorPorPeriodo
+
+Permite consultar el importe total de las compras realizadas a un proveedor durante un período determinado.
+
+Recibe el CUIT del proveedor y las fechas del período, y devuelve el nombre del proveedor y el importe total de sus compras.
+
+### 4. Procedimiento: sp_ConsultarPrendasVendidasPorTemporada
+
+Permite consultar las cantidades de prendas vendidas agrupadas por tipo de prenda dentro de un período determinado.
+
+Recibe las fechas de inicio y finalización como parámetros y considera únicamente las ventas confirmadas.
+
+## Ejecución y pruebas
+
+Para comprobar el funcionamiento de la función y los procedimientos almacenados, se utilizan las siguientes instrucciones en SQL Server.
+
+### 1. Ejecución de la función
+
+```sql
+SELECT dbo.fn_CalcularTotalVenta(1) AS total_venta;
+
+
+La función recibe el identificador de una venta y devuelve el importe total calculado.
+
+### 2. Ejecución del procedimiento de compras por color
+
+```sql
+EXEC dbo.sp_ConsultarComprasPorColor
+    @fecha_desde = '2026-05-01',
+    @fecha_hasta = '2026-05-31';
+
+
+Permite consultar las cantidades de prendas compradas por color durante el período indicado.
+
+### 3. Ejecución del procedimiento de compras por proveedor
+
+```sql
+EXEC dbo.sp_ConsultarComprasProveedorPorPeriodo
+    @cuit = '20301234567',
+    @fecha_desde = '2026-05-01',
+    @fecha_hasta = '2026-05-31';
+
+
+Permite obtener el importe total de las compras realizadas a un proveedor durante el período establecido.
+
+### 4. Ejecución del procedimiento de prendas vendidas por temporada
+
+```sql
+EXEC dbo.sp_ConsultarPrendasVendidasPorTemporada
+    @fecha_desde = '2026-05-01',
+    @fecha_hasta = '2026-05-31';
+
+
+Permite consultar las unidades vendidas agrupadas por tipo de prenda para el período seleccionado.
+
+**Nota:** los valores utilizados en las pruebas, como el identificador de venta y el CUIT, deben corresponder a registros existentes en la base de datos.
+
+## Resultados obtenidos
+
+Los desarrollos permiten reutilizar consultas y cálculos frecuentes, obtener información según distintos períodos y facilitar el análisis de las operaciones comerciales de SUPER-EXPRESS.
