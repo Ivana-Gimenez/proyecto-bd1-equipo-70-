@@ -10,7 +10,7 @@ Es un informe clave para:
 
 ## Estrategia SQL que utiliza
 
-- **Relacionamiento mediante `JOIN`:** Conecta cuatro tablas (`Cabecera_Venta` → `Detalle_Venta` → `Prenda` → `Cliente`) para relacionar cada venta con sus detalles, las prendas adquiridas y los datos del cliente.
+- **Relacionamiento mediante JOIN:** Conecta cuatro tablas (Cabecera_Venta → Detalle_Venta → Prenda → Cliente) para relacionar cada venta con sus detalles, las prendas adquiridas y los datos del cliente.
 - **Selección de información:** Obtiene la fecha de la venta, el nombre del cliente, la descripción de la prenda, el precio unitario y la cantidad comprada.
-- **Cálculo del subtotal:** Multiplica `dv.cantidad * dv.precio_unitario` para obtener el importe correspondiente a cada producto.
-- **Ordenamiento (`ORDER BY`):** Organiza los resultados por identificador de venta y por identificador del detalle, permitiendo visualizar juntos los artículos que pertenecen a una misma operación.
+- **Cálculo del subtotal:** Multiplica dv.cantidad * dv.precio_unitario para obtener el importe correspondiente a cada producto.
+- **Ordenamiento (ORDER BY):** Organiza los resultados por identificador de venta y por identificador del detalle, permitiendo visualizar juntos los artículos que pertenecen a una misma operación.
