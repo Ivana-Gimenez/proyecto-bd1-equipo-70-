@@ -17,13 +17,11 @@ Centralización: permiten mantener determinadas reglas de negocio directamente e
 Aplicación:
 
 ---------------------------------------------------- Actualizacion de stock venta
-CREATE TRIGGER trg_ActualizarStockVenta
+CREATE TRIGGER t_ActualizarStockVenta
 ON Detalle_Venta
 AFTER INSERT
 AS
 BEGIN
-    SET NOCOUNT ON;
-
     UPDATE p
     SET p.stock = p.stock - i.cantidad
     FROM Prenda p
@@ -37,13 +35,11 @@ END;
 GO
 
 --------------------------------------------------- actualizacion de stock compra
-CREATE TRIGGER trg_ActualizarStockCompra
+CREATE TRIGGER t_ActualizarStockCompra
 ON Detalle_Compra
 AFTER INSERT
 AS
 BEGIN
-    SET NOCOUNT ON;
-
     UPDATE p
     SET p.stock = p.stock + i.cantidad
     FROM Prenda p
