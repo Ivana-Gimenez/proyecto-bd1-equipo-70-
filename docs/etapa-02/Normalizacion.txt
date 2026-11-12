@@ -1,171 +1,268 @@
-Proceso de Normalización
+# Proceso de Normalización
 
-Se aplicó l proceso de normalización modelo relacional inicial del punto de venta de indumentaria con el objetivo de darle calidad al desarrollo.
+Se aplicó el proceso de normalización al modelo relacional inicial del punto de venta de indumentaria, con el objetivo de mejorar la organización y calidad de los datos.
 
-El modelo inicial contenía las tablas COMPRA, CLIENTES, PRODUCTOS y PROVEEDORES. A partir de este modelo se aplicaron progresivamente las tres primeras formas normales.
+El modelo inicial contenía las tablas COMPRA, CLIENTES, PRODUCTOS y PROVEEDORES. A partir de esta estructura se aplicaron progresivamente las tres primeras formas normales.
 
-1. Primera Forma Normal (1FN)
+## 1. Primera Forma Normal (1FN)
 
 La Primera Forma Normal establece que:
 
-Cada atributo debe contener valores atómicos.
-No deben existir grupos repetitivos.
-Cada registro debe poder identificarse mediante una clave primaria.
-Una entidad que puede tener múltiples ocurrencias relacionadas debe representarse mediante registros separados.
-Situación inicial
+- Cada atributo debe contener valores atómicos.
+- No deben existir grupos repetitivos.
+- Cada registro debe poder identificarse mediante una clave primaria.
+- Una entidad que puede tener múltiples ocurrencias relacionadas debe representarse mediante registros separados.
+
+### Situación inicial
 
 En el modelo original, la tabla COMPRA contenía:
 
-COMPRA
-id_compra(PK)
-efectivo
-debito
-credito
-transferencia
-billetera_virtual
-estado_de_compra
-fecha
-id_cliente(FK)
-id_producto(FK)
+**COMPRA**
 
-Se observa que los diferentes medios de pago están representados como varios atributos dentro de la misma tabla:
+- id_compra (PK)
+- efectivo
+- debito
+- credito
+- transferencia
+- billetera_virtual
+- estado_de_compra
+- fecha
+- id_cliente (FK)
+- id_producto (FK)
 
-efectivo
-debito
-credito
-transferencia
-billetera_virtual
+Se observa que los diferentes medios de pago estaban representados como varios atributos dentro de la misma tabla:
+
+- efectivo
+- debito
+- credito
+- transferencia
+- billetera_virtual
 
 Estos atributos representan distintas posibilidades de un mismo concepto: el método de pago.
 
-Además, id_producto dentro de COMPRA limita el modelo a asociar directamente una compra con un único producto, cuando una compra puede contener varios productos.
+Además, id_producto dentro de COMPRA limitaba el modelo a asociar directamente una compra con un único producto, cuando una compra puede contener varios productos.
 
-También se presentaba una relación directa entre PROVEEDORES y PRODUCTOS mediante id_producto, lo que no representa adecuadamente la situación en la que un proveedor puede participar en diferentes compras y una compra puede incluir diferentes productos. Debido a esto:
-- Separamos los datos correspondientes a diferentes conceptos
+También se buscó mejorar la relación entre proveedores, compras y productos, evitando concentrar información de diferentes conceptos en una misma estructura.
+
+Debido a esto:
+
+- Separamos los datos correspondientes a diferentes conceptos.
 - Creamos una estructura de cabecera y detalle.
+- Separamos los métodos de pago en una entidad independiente.
 
-Cabecera_compra
-id_compra(PK)
-fecha
-total
+**Cabecera_Compra**
 
-Detalle_compra
-id_det_compra(PK)
-cantidad
-subtotal
-id_compra(FK)
-cuit(FK)
-cod_prenda(FK)
+- id_compra (PK)
+- fecha
+- total
+- cuit (FK)
 
-De esta manera, una compra puede tener múltiples registros en Detalle_compra, en lugar de intentar almacenar todos esos productos dentro de un único registro de COMPRA.
+**Detalle_Compra**
+
+- id_det_compra (PK)
+- cantidad
+- precio_unitario
+- subtotal
+- id_compra (FK)
+- cod_prenda (FK)
+
+De esta manera, una compra puede tener múltiples registros en Detalle_Compra, en lugar de intentar almacenar todos esos productos dentro de un único registro.
+
+Los datos del proveedor se mantienen en una entidad independiente y la relación con las compras se establece mediante la clave foránea correspondiente.
 
 También se separaron los métodos de pago:
 
-Metodo_Pago
-cod_metodo_pago(PK)
-descripcion
+**Metodo_Pago**
 
-Y Detalle_venta referencia el método mediante:
+- cod_metodo_pago (PK)
+- descripcion
 
-cod_metodo_pago(FK)
+Y se creó una tabla intermedia:
 
-La información queda organizada en registros individuales y se eliminan los grupos de atributos que representaban múltiples ocurrencias del mismo concepto y se separan las entidades relacionadas con la compra, venta, productos, clientes, proveedores y métodos de pago.
+**Venta_Metodo_Pago**
 
-2. Segunda Forma Normal (2FN)
+- id_venta (PK, FK)
+- cod_metodo_pago (PK, FK)
+- importe
 
-La Segunda Forma Normal añade:
+Esta estructura permite asociar una venta con uno o varios métodos de pago, registrando el importe correspondiente a cada uno.
 
-Todos los atributos que no forman parte de la clave deben depender de la totalidad de la clave primaria, y no solamente de una parte de ella.
+La información queda organizada en registros individuales y se eliminan los grupos de atributos que representaban múltiples ocurrencias del mismo concepto.
 
-Este problema aparece especialmente cuando tenemos claves compuestas.
+## 2. Segunda Forma Normal (2FN)
 
-Situación del modelo
+La Segunda Forma Normal establece que:
 
-Si bien el modelo no tiene en si mismo esta situación, para analizar una compra podemos considerar inicialmente una clave lógica compuesta:
+Todos los atributos que no forman parte de la clave deben depender de la totalidad de la clave primaria y no solamente de una parte de ella.
 
-(id_compra, cod_prenda)
+Este problema aparece especialmente cuando existen claves primarias compuestas.
 
-Esta combinación identifica qué producto forma parte de determinada compra. Sin embargo, no todos los datos dependerían de ambos atributos.
+### Situación del modelo
 
-Por ejempl, la cantidad y el subtotal corresponden específicamente a la combinación de una compra y una prenda, por lo tanto, existirían dependencias parciales.
+Para analizar una compra podemos considerar la combinación:
 
-Para brindar el orden correcto, y evitar estos casos, se separaron los atributos según la entidad de la que dependen.
+**(id_compra, cod_prenda)**
 
+Esta combinación permite identificar qué prendas forman parte de una determinada compra.
 
-Los datos propios de una compra ya no se repiten en cada producto comprado. Por ejemplo, si una compra tiene cinco prendas, la fecha de la compra no necesita almacenarse cinco veces.
-La información queda distribuida de acuerdo con su dependencia, esto reduce la redundancia y permite que una compra tenga múltiples productos.
+Los datos como cantidad, precio_unitario y subtotal corresponden específicamente a cada producto incluido en esa operación.
 
-3. Tercera Forma Normal (3FN)
+En el modelo final se creó la tabla Detalle_Compra, que utiliza una clave primaria propia:
 
-La Tercera Forma Normal añade:
+**Detalle_Compra**
+
+- id_det_compra (PK)
+- cantidad
+- precio_unitario
+- subtotal
+- id_compra (FK)
+- cod_prenda (FK)
+
+De esta manera, cada registro representa un detalle particular de una compra.
+
+Los datos propios de la compra se mantienen en Cabecera_Compra, mientras que los datos correspondientes a cada producto se almacenan en Detalle_Compra.
+
+Por ejemplo, si una compra contiene cinco prendas, la fecha y los datos generales de la compra no necesitan almacenarse cinco veces.
+
+Esta organización permite reducir la redundancia y representar correctamente las operaciones que contienen múltiples productos.
+
+La misma estructura se aplica a las ventas mediante:
+
+**Cabecera_Venta**
+
+- id_venta (PK)
+- fecha
+- id_cliente (FK)
+- total
+- cod_estado (FK)
+
+**Detalle_Venta**
+
+- id_det_venta (PK)
+- cantidad
+- precio_unitario
+- subtotal
+- id_venta (FK)
+- cod_prenda (FK)
+
+Así, los datos generales de una venta se mantienen separados de los datos particulares de cada prenda vendida.
+
+## 3. Tercera Forma Normal (3FN)
+
+La Tercera Forma Normal establece que:
 
 Los atributos que no son clave no deben depender de otros atributos que tampoco son clave.
 
-Es decir, se eliminan las dependencias transitivas.
+Es decir, se busca eliminar las dependencias transitivas.
 
 La idea puede representarse así:
 
-Clave → A → B
+**Clave → A → B**
 
 Si B depende de A y A no es la clave, existe una dependencia transitiva que conviene separar.
 
-Ejemplo: información de los clientes
+### Ejemplo: información de los clientes
 
 En el modelo inicial, COMPRA contenía:
 
-id_compra
-...
-id_cliente
+- id_compra
+- id_cliente
 
-Mientras que la información del cliente estaba en CLIENTES.
+Mientras que la información del cliente estaba en una tabla independiente.
 
-Cabecera_venta
+En el modelo final se mantiene esta separación:
 
-id_venta(PK)
-fecha
-total
-id_cliente(FK)
+**Cabecera_Venta**
 
-Cliente
+- id_venta (PK)
+- fecha
+- id_cliente (FK)
+- total
+- cod_estado (FK)
 
-id_cliente(PK)
-dni
-nombre_apellido
+**Cliente**
+
+- id_cliente (PK)
+- dni
+- nombre_apellido
 
 Por lo tanto, los datos del cliente no se almacenan repetidamente en cada venta.
 
-La relación queda:
+La relación queda establecida de la siguiente manera:
 
-Cliente -> Cabecera_Venta
+**Cliente → Cabecera_Venta**
 
 Un cliente puede realizar muchas ventas.
 
-Casos:
+### Otros casos de separación de entidades
 
-Proveedores:
-El id_producto dentro de PROVEEDORES genera una dependencia que no representa correctamente la relación entre proveedores y productos. En el modelo normalizado, el proveedor queda como una entidad independiente y la relación con las compras se establece mediante Detalle_compra. Esto permite registrar qué proveedor intervino en cada detalle de compra sin duplicar los datos del proveedor.
+**Proveedores**
 
-Talles, diseños y materiales:
-En el modelo inicial, PRODUCTOS tenía directamente:
-categoria
-talle
-color
+Los proveedores se mantienen en una entidad independiente, con sus propios atributos:
 
-En el modelo final se separaron conceptos que poseen información propia.
-Prenda utiliza las claves foráneas correspondientes
-De esta manera, la información descriptiva de cada concepto se mantiene en su propia entidad.
+- cuit (PK)
+- nombre
+- razon_social
+- telefono
 
-Evolución general del modelo podemos verla desde el diagrama I hasta transformarse en el diagrama II
-Existían datos de diferentes conceptos concentrados en las mismas estructuras y relaciones que no permitían representar correctamente múltiples productos por operación.
+La relación con las compras se establece mediante Cabecera_Compra, permitiendo registrar qué proveedor intervino en cada operación sin duplicar sus datos.
 
-Conclusión
+**Talles, géneros y categorías**
+
+En el modelo inicial, PRODUCTOS concentraba directamente información como categoría y talle.
+
+En el modelo final se separaron estos conceptos en entidades independientes:
+
+- Talle
+- Genero
+- Categoria
+
+La tabla Prenda utiliza las claves foráneas correspondientes para relacionarse con estas entidades.
+
+**Diseños y colores**
+
+Se crearon las tablas:
+
+- Disenno
+- Color
+- Disenno_Color
+
+La tabla Disenno_Color permite relacionar los diseños con los diferentes colores disponibles, evitando repetir la información descriptiva de cada uno.
+
+**Materiales**
+
+También se separó la información de los materiales:
+
+- Material
+- Prenda_Material
+
+La tabla Prenda_Material relaciona las prendas con los materiales que las componen y permite registrar el porcentaje correspondiente a cada material.
+
+**Métodos de pago y estados**
+
+Se crearon entidades independientes para almacenar:
+
+- Metodo_Pago
+- Estado
+
+De esta manera, las descripciones de los métodos de pago y de los estados de las ventas no necesitan repetirse en cada operación.
+
+## Evolución general del modelo
+
+La evolución del modelo puede observarse comparando el Diagrama I con el Diagrama II.
+
+En el modelo inicial existían datos de diferentes conceptos concentrados en las mismas estructuras y relaciones que no permitían representar correctamente múltiples productos por operación.
+
+A partir del proceso de normalización se separaron las entidades, se organizaron las relaciones mediante claves primarias y foráneas y se incorporaron tablas intermedias para representar las relaciones entre diferentes conceptos.
+
+## Conclusión
 
 El proceso de normalización permitió transformar el modelo inicial en una estructura donde cada tabla representa un concepto específico y las relaciones entre entidades se establecen mediante claves primarias y foráneas.
 
-1FN permitió organizar los datos en valores atómicos y separar las operaciones en estructuras de cabecera y detalle.
+La **Primera Forma Normal (1FN)** permitió organizar los datos en valores atómicos, eliminar grupos repetitivos y separar las operaciones en estructuras de cabecera y detalle.
 
-2FN permitió eliminar dependencias parciales, separando los datos propios de una compra, una venta, una prenda y los datos específicos de cada detalle.
+La **Segunda Forma Normal (2FN)** permitió organizar los datos propios de cada operación y diferenciarlos de los datos específicos de cada detalle, evitando repetir información general de compras y ventas.
 
-3FN permitió eliminar dependencias transitivas, separando entidades como Cliente, Proveedor, Metodo_Pago, Talle, Diseño y Materiales.
+La **Tercera Forma Normal (3FN)** permitió separar entidades como Cliente, Proveedor, Metodo_Pago, Talle, Genero, Categoria, Disenno y Material, evitando duplicaciones y dependencias innecesarias.
 
-Como resultado, el modelo final presenta menor redundancia, facilita la actualización de la información y permite representar correctamente relaciones como un cliente con muchas ventas, una venta con muchos detalles, una compra con múltiples prendas y diferentes proveedores, manteniendo la integridad referencial mediante las claves foráneas.
+Como resultado, el modelo final presenta una mejor organización de los datos, facilita su actualización y permite representar correctamente relaciones como un cliente con muchas ventas, una venta con muchos detalles, una compra con múltiples prendas y diferentes proveedores, manteniendo la integridad referencial mediante las claves foráneas.
