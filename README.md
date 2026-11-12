@@ -1,14 +1,14 @@
-Proyecto de Base de Datos I – Equipo 70
+# Proyecto de Base de Datos I – Equipo 70
 
-Sistema de Gestión de Ventas 
+## Sistema de Gestión de Ventas
 
-Descripción del proyecto
+### Descripción del proyecto
 
-El presente proyecto consiste en el diseño e implementación de una base de datos relacional para SUPER-EXPRESS, un sistema de gestión de ventas e inventario de una tienda de indumentaria.
+El presente proyecto consiste en el diseño e implementación de una base de datos relacional para un sistema de gestión de ventas e inventario de una tienda de indumentaria.
 
 Su objetivo es organizar y administrar la información relacionada con productos, clientes, proveedores, compras, ventas, stock y métodos de pago, garantizando la integridad, consistencia y correcta organización de los datos.
 
-Objetivos
+### Objetivos
 
 - Diseñar un modelo de datos relacional normalizado hasta la Tercera Forma Normal (3FN).
 - Implementar las tablas, relaciones y restricciones de integridad.
@@ -16,13 +16,13 @@ Objetivos
 - Facilitar el control del inventario y la información comercial.
 - Incorporar mecanismos técnicos que mejoren la seguridad, el rendimiento y la integridad de la base de datos.
 
-Tecnologías utilizadas
+### Tecnologías utilizadas
 
 - Microsoft SQL Server.
 - SQL Server Management Studio (SSMS).
 - GitHub para el control de versiones y la documentación del proyecto.
 
-Desarrollo por etapas
+### Desarrollo por etapas
 
 **Etapa I – Requerimientos y dominio del negocio**
 
@@ -46,17 +46,16 @@ Investigación e implementación de mecanismos para fortalecer la base de datos:
 
 - Procedimientos y funciones almacenadas.
 - Manejo de transacciones.
-- Triggers de auditoría.
+- Disparadores de auditoría (Triggers).
 - Seguridad.
 - Índices y optimización de consultas.
 
-Estructura del repositorio
+### Estructura del repositorio
 
 ```text
-
 proyecto-bd1-equipo-70/
 │
-├── docs/
+├── documentos/
 │   ├── etapa-01/
 │   ├── etapa-02/
 │   ├── etapa-03/
@@ -70,18 +69,17 @@ proyecto-bd1-equipo-70/
 │   └── tecnico/
 │
 └── README.md
+```
 
-
-
-Integrantes:
+### Integrantes
 
 1. CORONEL, Sofia Celina.
 2. GIMENEZ, Ivana Belen.
 3. MARCHI, Enzo Lucas.
 
-Equipo: 70
+**Equipo:** 70
 
-Institución
+### Institución
 
 Universidad Nacional del Nordeste - UNNE  
 Licenciatura en Sistemas de Información  
