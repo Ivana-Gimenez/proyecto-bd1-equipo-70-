@@ -1,37 +1,69 @@
 # Reglas de Negocio
 
-## RN.01 – Gestión de productos
-Cada prenda o artículo de indumentaria debe estar registrado en el sistema con un código único, descripción, categoría, talle, color, precio unitario y cantidad disponible en stock.
+## RN.01 – Registro y clasificación de prendas
 
-## RN.02 – Control de stock
-El sistema debe mantener actualizado el stock de cada producto. Cuando se registre una venta, la cantidad vendida deberá descontarse automáticamente del stock disponible.
+Cada prenda deberá estar registrada en el sistema mediante un código único, descripción, categoría, talle, género, diseño, precio unitario y cantidad disponible en stock. La categoría permitirá identificar el tipo de prenda comercializada.
 
-## RN.03 – Stock insuficiente
-No se podrá registrar una venta cuando la cantidad solicitada de una prenda sea superior al stock disponible.
+## RN.02 – Composición de materiales
 
-## RN.04 – Registro de clientes
-Cada cliente podrá ser registrado con sus datos personales y de contacto. Un cliente puede realizar múltiples compras y cada venta podrá asociarse al cliente correspondiente.
+Una prenda podrá estar compuesta por uno o varios materiales. Para cada material asociado deberá registrarse un porcentaje de participación mayor que cero y menor o igual a 100. La composición total de una prenda deberá representar el 100 % de sus materiales.
 
-## RN.05 – Precio histórico de las ventas
-El precio unitario de cada producto deberá almacenarse en el detalle de la venta al momento de concretar la operación. Si posteriormente cambia el precio del producto, las ventas históricas conservarán el precio originalmente aplicado.
+## RN.03 – Diseño y combinación de colores
 
-## RN.06 – Cálculo del total de la venta
-El subtotal de cada línea del detalle se calculará multiplicando la cantidad vendida por el precio unitario registrado. El total de la venta será la suma de todos los subtotales.
+Cada prenda deberá tener asociado un diseño, que representará su patrón o apariencia visual. Un diseño podrá estar compuesto por uno o varios colores, y un mismo color podrá utilizarse en diferentes diseños.
 
-## RN.07 – Métodos de pago
-Cada venta deberá registrar uno o más métodos de pago habilitados por el comercio, tales como efectivo, tarjeta de débito, tarjeta de crédito, transferencia bancaria o billetera virtual.
+## RN.04 – Gestión de proveedores y compras
 
-## RN.08 – Estado de la venta
-Toda venta deberá poseer un estado que permita identificar si se encuentra pendiente, confirmada o anulada.
+Toda compra de mercadería deberá estar asociada a un proveedor previamente registrado. Cada compra podrá incluir una o varias prendas y deberá almacenar la fecha, el importe total y el detalle de los artículos adquiridos.
 
-## RN.09 – Integridad del detalle de venta
-Una venta deberá contener al menos un producto para poder ser confirmada. Cada artículo incluido deberá especificar cantidad, precio unitario y subtotal.
+## RN.05 – Registro de clientes
 
-## RN.10 – Historial de operaciones
-El sistema deberá conservar el historial completo de las ventas realizadas, incluyendo fecha, cliente, prendas vendidas, cantidades, precios aplicados, total y método de pago utilizado.
+Cada cliente deberá identificarse mediante un DNI único y contar con un nombre y apellido registrados. Un cliente podrá estar asociado a múltiples ventas, mientras que cada venta deberá corresponder a un único cliente.
 
-## RN.11 – Actualización de precios
-La modificación del precio actual de una prenda afectará únicamente a futuras ventas. Los precios registrados en operaciones anteriores no deberán modificarse.
+## RN.06 – Control de stock
 
-## RN.12 – Devoluciones y anulaciones
-Cuando una venta sea anulada o se registre una devolución autorizada, el sistema deberá actualizar automáticamente el stock, reincorporando las unidades correspondientes.
+El sistema deberá mantener actualizado el stock disponible de cada prenda. Las compras de mercadería incrementarán las existencias, mientras que las ventas confirmadas disminuirán las unidades correspondientes.
+
+## RN.07 – Stock insuficiente
+
+No se deberá permitir confirmar una venta cuando la cantidad solicitada de una prenda sea superior a las unidades disponibles en stock. El sistema deberá impedir que las existencias de una prenda sean negativas.
+
+## RN.08 – Precio histórico de las operaciones
+
+El precio unitario de cada prenda deberá almacenarse en el detalle de compra o venta al momento de realizar la operación. Las modificaciones posteriores de los precios actuales no deberán alterar los valores históricos registrados.
+
+## RN.09 – Cálculo de subtotales
+
+El subtotal de cada artículo incluido en una compra o venta se calculará multiplicando la cantidad por el precio unitario correspondiente. Este importe deberá obtenerse automáticamente y no modificarse de manera independiente.
+
+## RN.10 – Cálculo del total de las operaciones
+
+El total de cada compra o venta deberá corresponder a la suma de los subtotales de todos los artículos incluidos en su respectivo detalle.
+
+## RN.11 – Métodos de pago
+
+Cada venta podrá abonarse mediante uno o varios métodos de pago habilitados por el comercio, tales como efectivo, tarjeta de débito, tarjeta de crédito, transferencia bancaria o billetera virtual. Cuando se utilicen varios métodos, deberá registrarse el importe correspondiente a cada uno.
+
+## RN.12 – Estado de la venta
+
+Toda venta deberá tener asociado un estado que permita identificar su situación dentro del proceso comercial. Se contemplan, como mínimo, los estados pendiente, confirmada y anulada.
+
+## RN.13 – Integridad del detalle de venta
+
+Una venta deberá contener al menos un artículo en su detalle para poder ser confirmada. Cada artículo deberá especificar una prenda, una cantidad mayor que cero y un precio unitario válido.
+
+## RN.14 – Correspondencia entre pagos y total de venta
+
+La suma de los importes registrados mediante los diferentes métodos de pago deberá coincidir con el total de la venta para considerar que la operación está completamente abonada.
+
+## RN.15 – Conservación del historial de operaciones
+
+El sistema deberá conservar los registros históricos de compras y ventas, incluyendo sus fechas, proveedores o clientes asociados, artículos involucrados, cantidades, precios unitarios, subtotales, totales y métodos de pago correspondientes.
+
+## RN.16 – Actualización de precios
+
+La modificación del precio actual de una prenda afectará únicamente a las operaciones futuras. Los precios almacenados en los detalles de compras y ventas anteriores deberán conservarse sin modificaciones.
+
+## RN.17 – Anulaciones y devoluciones
+
+Las ventas anuladas deberán conservarse en el historial del sistema, modificando su estado en lugar de eliminar sus registros. Cuando corresponda, las anulaciones o devoluciones deberán contemplar la restitución de las unidades al stock disponible, evitando que un mismo movimiento sea revertido más de una vez.
