@@ -15,39 +15,6 @@ Auditoría y seguimiento: permiten registrar modificaciones, eliminaciones e ins
 Centralización: permiten mantener determinadas reglas de negocio directamente en la base de datos.
 
 Aplicación:
-
----------------------------------------------------- Actualizacion de stock venta
-CREATE TRIGGER t_ActualizarStockVenta
-ON Detalle_Venta
-AFTER INSERT
-AS
-BEGIN
-    UPDATE p
-    SET p.stock = p.stock - i.cantidad
-    FROM Prenda p
-    INNER JOIN (
-        SELECT cod_prenda, SUM(cantidad) AS cantidad
-        FROM inserted
-        GROUP BY cod_prenda
-    ) i
-        ON p.cod_prenda = i.cod_prenda;
-END;
-GO
-
---------------------------------------------------- actualizacion de stock compra
-CREATE TRIGGER t_ActualizarStockCompra
-ON Detalle_Compra
-AFTER INSERT
-AS
-BEGIN
-    UPDATE p
-    SET p.stock = p.stock + i.cantidad
-    FROM Prenda p
-    INNER JOIN (
-        SELECT cod_prenda, SUM(cantidad) AS cantidad
-        FROM inserted
-        GROUP BY cod_prenda
-    ) i
-        ON p.cod_prenda = i.cod_prenda;
-END;
-GO
+Calculo de totales para una compra
+Calculo de totales para una venta
+Manejo de stock en compras, ventas, y cambio de estado de una venta
