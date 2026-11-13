@@ -33,9 +33,9 @@ En SQL Server se utilizan las siguientes instrucciones:
 
 Los procedimientos pueden recibir parámetros para adaptar las consultas a diferentes necesidades, como fechas, identificadores o datos de proveedores.
 
-## Aplicación en SUPER-EXPRESS
+## Aplicación
 
-En SUPER-EXPRESS se desarrollaron una función y tres procedimientos almacenados para facilitar el cálculo de importes y la consulta de información comercial.
+Se desarrollaron una función y tres procedimientos almacenados para facilitar el cálculo de importes y la consulta de información comercial.
 
 ### 1. Función: fn_CalcularTotalVenta
 
