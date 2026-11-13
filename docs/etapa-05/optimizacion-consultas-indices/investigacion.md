@@ -36,8 +36,8 @@ Algunas instrucciones relacionadas son:
 
 - CREATE CLUSTERED INDEX: crea un índice agrupado.
 - CREATE NONCLUSTERED INDEX: crea un índice no agrupado.
-- INCLUDE`: incorpora columnas adicionales al índice.
-- DROP INDEX`: elimina un índice existente.
+- INCLUDE: incorpora columnas adicionales al índice.
+- DROP INDEX: elimina un índice existente.
 - SET STATISTICS TIME ON: muestra información sobre el tiempo de ejecución.
 - SET STATISTICS IO ON: muestra información sobre las lecturas realizadas.
 
@@ -101,14 +101,6 @@ Se repite la consulta y se analiza si el plan de ejecución utiliza una operaci�
 
 Se registran los tiempos de CPU, el tiempo total, las lecturas lógicas y el plan de ejecución.
 
-## Comparación de resultados
-
-Para evaluar el impacto de los índices, se comparan los resultados obtenidos en los tres escenarios:
-
-| Aspecto | Sin índice | Índice CLUSTERED | Índice NONCLUSTERED con INCLUDE | ---FALTAAAAAAAA-------
-
-
-Los valores deben obtenerse de las estadísticas de ejecución y del plan de ejecución de SQL Server. Pueden variar según el hardware, la cantidad de registros y la configuración del motor de base de datos.
 
 ## Aplicación
 
